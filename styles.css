@@ -270,6 +270,14 @@ p {
     margin-bottom: 4rem;
 }
 
+.pricing-note {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: var(--gold);
+    opacity: 0.9;
+    font-style: italic;
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

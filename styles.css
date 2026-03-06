@@ -307,15 +307,66 @@ p {
     border-radius: 2px;
 }
 
-.img-container img {
+.carousel-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s ease;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.8s ease;
 }
 
-.product-card:hover .img-container img {
+.carousel-img.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.product-card:hover .carousel-img.active {
     transform: scale(1.05);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(26, 28, 32, 0.7);
+    color: var(--gold);
+    border: 1px solid var(--border-color);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.product-card:hover .carousel-btn {
+    opacity: 1;
+}
+
+.carousel-btn:hover {
+    background: var(--gold);
+    color: var(--bg-dark);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
 }
 
 .product-info {

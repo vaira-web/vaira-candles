@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    
+
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -75,21 +75,27 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // Dynamically load additional images in the folder (2.jpeg, 3.jpeg, etc.)
+        // Dynamically load additional images in the folder (2.jpeg, 3.jpg, etc.)
         const firstImg = images[0];
         if (firstImg) {
             const srcAttr = firstImg.getAttribute('src');
-            const srcMatch = srcAttr.match(/(.*\/)1\.(jpeg|jpg|png)$/i);
-            
+            const srcMatch = srcAttr.match(/(.*\/)1\.[a-z0-9]+$/i);
+
             if (srcMatch) {
                 const basePath = srcMatch[1];
-                const ext = srcMatch[2];
                 let imgIndex = 2;
-                
-                const loadNextImage = () => {
+                const extensions = ['jpeg', 'jpg', 'png', 'webp', 'JPEG', 'JPG', 'PNG', 'WEBP'];
+
+                const tryLoadImage = (index, extIndex) => {
+                    if (extIndex >= extensions.length) {
+                        // Stop attempting to load when all extensions are not found
+                        updateButtons();
+                        return;
+                    }
+
                     const img = new Image();
-                    img.src = `${basePath}${imgIndex}.${ext}`;
-                    
+                    img.src = `${basePath}${index}.${extensions[extIndex]}`;
+
                     img.onload = () => {
                         img.className = 'carousel-img';
                         img.alt = firstImg.alt;
@@ -97,16 +103,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         images.push(img);
                         imgIndex++;
                         updateButtons();
-                        loadNextImage(); // try loading the next one
+                        tryLoadImage(imgIndex, 0); // try loading the next one
                     };
-                    
+
                     img.onerror = () => {
-                        // Stop attempting to load when an image is not found
-                        updateButtons();
+                        // Try next extension
+                        tryLoadImage(index, extIndex + 1);
                     };
                 };
-                
-                loadNextImage();
+
+                tryLoadImage(imgIndex, 0);
             }
         }
 
@@ -123,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
             updateCarousel();
         });
-        
+
         // Initial setup
         updateButtons();
     });

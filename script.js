@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Dynamically load additional images in the folder (2.jpeg, 3.jpg, etc.)
         const firstImg = images[0];
-        if (firstImg) {
+        if (firstImg && !carousel.classList.contains('no-auto')) {
             const srcAttr = firstImg.getAttribute('src');
             const srcMatch = srcAttr.match(/(.*\/)1\.[a-z0-9]+$/i);
 

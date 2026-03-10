@@ -441,6 +441,41 @@
         </div>
     </section>
 
+    <!-- Cart UI -->
+    <div class="cart-floating-btn" id="cart-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="cart-count" id="cart-count">0</span>
+    </div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" id="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be dynamically injected here -->
+            <div class="empty-cart-msg">Your cart is empty</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Amount:</span>
+                <span id="cart-total-price">₹0.00</span>
+            </div>
+            <p class="cart-note">Send your order via:</p>
+            <div class="checkout-buttons">
+                <button class="btn checkout-btn bg-whatsapp" data-platform="whatsapp">WhatsApp</button>
+                <!-- <button class="btn checkout-btn bg-email" data-platform="email">Email</button> -->
+                <button class="btn checkout-btn bg-insta" data-platform="instagram">Instagram</button>
+            </div>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cart-overlay"></div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content fade-in">
